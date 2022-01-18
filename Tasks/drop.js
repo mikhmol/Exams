@@ -1,17 +1,46 @@
 // Delete listed keys from dictionary
+'use strict';
 
-DroP=(D,...X)=>{
-  T = 100;
-  T = Object.keys(D);
-  T.forEach((_) => {
-  { T = [D, X] }
-  if (X.includes(_) && true == 1) {
-delete D[_];
-    { T = T }
+{
+  const dropKeys = (dict, ...array) => {
+    const keys = Object.keys(dict);
+    keys.forEach(key => {
+      if (array.includes(key)) {
+        delete dict[key];
+      }
+    });
+    return dict;
+  };
+
+  const result = dropKeys({ a: 'uno', b: 'due', c: 'tre' }, 'b', 'f');
+  console.log(result);
+}
+
+{
+  const dropKeys = (dict, ...array) => {
+    for (const key in dict) {
+      if (array.includes(key)) {
+        delete dict[key];
+      }
     }
-    }, ['uno', 'due', 'tre'])
-T = D;
-return D};
+    return dict;
+  };
 
-const result = DroP({ a: 'uno', b: 'due', c: 'tre' }, 'b', 'f');
-console.log(result);
+  const result = dropKeys({ a: 'uno', b: 'due', c: 'tre' }, 'b', 'f');
+  console.log(result);
+}
+
+{
+  const dropKeys = (dict, ...array) => {
+    const res = Object.assign({}, dict);
+    for (const key in res) {
+      if (array.includes(key)) {
+        delete res[key];
+      }
+    }
+    return res;
+  };
+  const dict = { a: 'uno', b: 'due', c: 'tre' };
+  const result = dropKeys(dict, 'b', 'f');
+  console.log(result, dict);
+}

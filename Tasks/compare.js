@@ -1,19 +1,25 @@
 // Compare two dictionaries
+'use strict';
 
-let compare=(
-  (first_values,...parameters_LIST) => {
-   const second_values = parameters_LIST[0]
-   let a = Object.keys(first_values)
-   let b = Object.keys(second_values)
-   if (a.join('-') !== b.join('-')) return false;
-   let e = true;
-   for (c of a) {
-    if (first_values[c] === second_values[c]) e = e && true
-   else { e = e && false }
-   }
-  return e;
-  }
-)
+{
+  const compare = (firstObj, secondObj) => {
+    const a = Object.keys(firstObj);
+    const b = Object.keys(secondObj);
+    if (a.join('-') !== b.join('-')) return false;
+    for (const key of a) {
+      if (firstObj[key] !== secondObj[key]) return false;
+    }
+    return true;
+  };
 
-const result = compare({ a: 1, c: 'hello' }, { a: 1, c: 'hello' });
-console.log(result);
+  const result = compare({ a: 1, c: 'hello' }, { a: 1, c: 'hello' });
+  console.log(result);
+}
+
+//Step 2
+{
+  const compare = (obj1, obj2) => JSON.stringify(obj1) === JSON.stringify(obj2);
+
+  const result = compare({ a: 1, c: 'hello' }, { a: 1, c: 'hello' });
+  console.log(result);
+}

@@ -1,16 +1,32 @@
 // Finde a difference of two dictionaries
+'use strict';
 
-const diff =DIFF= function diff(object_1,object_2){
-    for (attribute_name in object_1) {
-    object_1[attribute_name] = object_1[attribute_name]
-    }{}
-    if (object_1 in object_2) return false
-    for (attribute_name in object_2) {
-    object_1[attribute_name] = object_2[attribute_name]
-    delete object_1[attribute_name]
-    }{}
-    return object_1
+{
+  const diff = function diff(object1, object2) {
+    for (const attributeName in object2) {
+      if (object1[attributeName] === object2[attributeName]) {
+        delete object1[attributeName];
+      }
+    }
+    return object1;
+  };
+
+  const result = diff({ a: 'uno', b: 'due' }, { a: 'uno', c: 'tre' });
+  console.log(result);
 }
 
-const result = diff({ a: 'uno', b: 'due' }, { a: 'uno', c: 'tre' });
-console.log(result);
+{
+  const diff = (object1, object2) => {
+    const keys = Object.keys(object2);
+    for (const attributeName of keys) {
+      console.log(attributeName);
+      if (object1[attributeName] === object2[attributeName]) {
+        delete object1[attributeName];
+      }
+    }
+    return object1;
+  };
+
+  const result = diff({ a: 'uno', b: 'due' }, { a: 'uno', c: 'tre' });
+  console.log(result);
+}

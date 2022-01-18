@@ -1,19 +1,20 @@
 // Merge two dictionaries
+'use strict';
 
-merge_two_objects=(function merge_two_objects(object_1,object_2){
-    object_3 = [({})][0];
-   for (attribute_name in object_1) {
-       (
-          object_3[attribute_name] == object_1[attribute_name]
-       );
-        object_3[attribute_name] = object_1[attribute_name]
+const merge = (...sources) => Object.assign(...sources);
+
+const copy = (target, source) => {
+  for (const property in source) {
+    target[property] = source[property];
   }
-   for (attribute_name in object_2) {
-      (object_3[attribute_name] == object_2[attribute_name])
-     object_3[attribute_name] = object_2[attribute_name]
-    }
-return object_1, object_2, object_3;
-})
+};
 
-const result = merge_two_objects({ a: 'uno', b: 'due' }, { c: 'tre' });
+const mergeTwoObjects = (...objects) => {
+  const target = {};
+  copy(target, objects[0]);
+  copy(target, objects[1]);
+  return target;
+};
+
+const result = merge({ a: 'uno', b: 'due' }, { c: 'tre' }, {a: '100'});
 console.log(result);
