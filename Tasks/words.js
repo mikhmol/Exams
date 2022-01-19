@@ -1,15 +1,12 @@
 // Count words
 'use strict';
 
-const countWords = function(line) {
-  let numberOfWordsInLine = 0;
-  let isNotSpace = true;
-  for (const char of line) {
-    if (isNotSpace && char !== ' ') {
-      isNotSpace = false;
+const countWords = (str = '') => {
+  if (str === '') return 0;
+  let numberOfWordsInLine = 1;
+  for (const char of str) {
+    if (char === ' ') {
       numberOfWordsInLine++;
-    } else {
-      isNotSpace = (char === ' ');
     }
   }
   return numberOfWordsInLine;

@@ -1,24 +1,37 @@
 // Count types in array
+'use strict';
 
-types_=function(s) {
-  types_=(
-  {
-  "number": 0,
-  "string": 0,
-  "boolean": 0,
-  }
-  )
-  for (i of s)
-  {
-  const t = typeof i
-  types_[t]++
+{
+  const types = s => {
+    const types = (
+      {
+        "number": 0,
+        "string": 0,
+        "boolean": 0,
+      }
+    );
+    for (const i of s) {
+      const t = typeof i;
+      types[t]++;
+    }
+    s.push('string');
+    return types;
   };
-  s.push(
-  'string'
-  )
-  return types_
-  s.length;
+
+  const result = types([5, true, 'string', 7, 'hello']);
+  console.log(result);
 }
 
-const result = types_([5, true, 'string', 7, 'hello']);
-console.log(result);
+{
+  const types = arr => {
+    const types = { number: 0, string: 0, boolean: 0 };
+    for (const value of arr) {
+      const type = typeof value;
+      types[type]++;
+    }
+    return types;
+  };
+
+  const result = types([5, true, 'string', 7, 'hello']);
+  console.log(result);
+}
