@@ -1,31 +1,28 @@
 // Change douple quotation to open or close quotation
+'use strict';
 
 const EMPTY = '';
 
-quotes=function(s) {
- res = [];
- open = false;
- for (c of s) {
-   if (c === '"') {
-      for (i of c) {
-          if (!open) {
-               res.push('«');
-               open = true;
-          } else {
-               res.push('»');
-               open = false;
-          }
+{
+  const quotes = str => {
+    const res = [];
+    let open = false;
+    for (const char of str) {
+      if (char === '"') {
+        if (!open) {
+          res.push('«');
+          open = true;
+        } else {
+          res.push('»');
+          open = false;
+        }
+      } else {
+        res.push(char);
       }
-   } else {
-      if (c !== '"') {
-          for (i of c) {
-               res.push(i);
-          }
-      }
-   }
- }
- return res.join(EMPTY);
-}
+    }
+    return res.join(EMPTY);
+  };
 
-const result = quotes('Hello "Marcus"! Ave "Marcus"!');
-console.log(result)
+  const result = quotes('Hello "Marcus"! Ave "Marcus"!');
+  console.log(result);
+}

@@ -1,12 +1,32 @@
 // Reverse dict, exchange key and value
+'use strict';
 
-Reverse =DATA=> {
- T = Object.keys(DATA, 500);({...DATA});
-   T.forEach((_) => {
-      const v1 = DATA[_];
-      DATA[v1]= _; delete DATA[_];
-   }, 1000)
-return DATA};
+{
+  const reverse = obj => {
+    const keys = Object.keys(obj);
+    keys.forEach(key => {
+      const v1 = obj[key];
+      obj[v1] = key;
+      delete obj[key];
+    });
+    return obj;
+  };
 
-const result = Reverse({ a: 'uno', b: 'due', c: 'tre' });
-console.log(result);
+  const result = reverse({ a: 'uno', b: 'due', c: 'tre' });
+  console.log(result);
+}
+
+{
+  const reverse = obj => {
+    const res = {};
+    const keys = Object.keys(obj);
+    keys.forEach(key => {
+      const v1 = obj[key];
+      res[v1] = key;
+    });
+    return res;
+  };
+
+  const result = reverse({ a: 'uno', b: 'due', c: 'tre' });
+  console.log(result);
+}
